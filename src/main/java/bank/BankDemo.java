@@ -9,8 +9,8 @@ public class BankDemo {
 		BankAccount account1 = bank.openAccount(5000);
 		BankAccount account2 = bank.openAccount(1000);
 		
-		account1.setBalance(5002);
-		
+		account1.setBalance(6002);
+
 		
 		System.out.println(account1);
 		System.out.println(account2);
