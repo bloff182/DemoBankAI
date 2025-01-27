@@ -1,6 +1,6 @@
 package bank;
 
-public class BankAccount implements Account {
+public class BankAccount {
 
 	private int balance;
 	
@@ -24,7 +24,6 @@ public class BankAccount implements Account {
 		this.balance = balance;
 	}
 
-	@Override
 	public void deposit(int amount) {
 		if (amount <= 0)
 			throw new IllegalArgumentException("Amount is negative");
@@ -32,7 +31,6 @@ public class BankAccount implements Account {
 		balance += amount;
 	}
 
-	@Override
 	public void withdraw(int amount) {
 		if (amount <= 0)
 			throw new IllegalArgumentException("Amount is negative");
