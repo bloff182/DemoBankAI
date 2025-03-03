@@ -1,21 +1,22 @@
 package bank;
 
-public class BankTransferImpl implements BankTransfer{
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-	private final int fee = 1;
-	
-	@Override
-	public void transfer(BankAccount from, BankAccount to, int amount) {
-		
-		if(from.getBalance() < amount + fee)
-			throw new IllegalArgumentException("You have no enought money!!!");
-		
-		from.withdraw(amount + fee);
-		
-		to.deposit(amount);
-	}
-	
-	public BankAccount openAccount(int balance) {
-		return new BankAccount(balance);
-	}
+public class BankTransferImplTests {
+
+    private BankTransferImpl transferImpl = new BankTransferImpl();
+    private BankAccount account1 = new BankAccount(100);
+    private BankAccount account2 = new BankAccount(0);
+
+    @BeforeEach
+    void setUp() {
+    }
+
+    @Test
+    void testTransferFunds() {
+        transferImpl.transferFunds(account1, account2, 50);
+        assertEquals(50, account1.getBalance());
+        assertEquals(50, account2.getBalance());
+    }
 }
