@@ -1,48 +1,55 @@
 package bank;
 
 public class BankAccount {
+    private double balance;
 
-	private int balance;
-	
-	public BankAccount() {
-		balance = 0;
-	}
-	
-	public BankAccount(int balance) {
-		this.balance = balance;
-	}
+    public BankAccount(double initialBalance) {
+        this.balance = initialBalance;
+    }
 
-	public int getAmount() {
-		return balance;
-	}
+    public void deposit(double amount) {
+        this.balance += amount;
+    }
 
-	public int getBalance() {
-		return balance;
-	}
+    public void withdraw(double amount) {
+        if (amount <= this.balance) {
+            this.balance -= amount;
+        } else {
+            throw new IllegalArgumentException("Insufficient funds");
+        }
+    }
 
-	public void setBalance(int balance) {
-		this.balance = balance;
-	}
+    public double getBalance() {
+        return this.balance;
+    }
+}
 
-	public void deposit(int amount) {
-		if (amount <= 0)
-			throw new IllegalArgumentException("Amount is negative");
-		
-		balance += amount;
-	}
 
-	public void withdraw(int amount) {
-		if (amount <= 0)
-			throw new IllegalArgumentException("Amount is negative");
-		
-		balance -= amount;
-	}
 
-	@Override
-	public String toString() {
-		return "BankAccount [balance=" + balance + "]";
-	}
-	
-	
+package bank;
 
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+class BankAccountTests {
+
+    @Test
+    void testDeposit() {
+        BankAccount account = new BankAccount(100);
+        account.deposit(50);
+        assertEquals(150, account.getBalance(), 0.001);
+    }
+
+    @Test
+    void testWithdraw() {
+        BankAccount account = new BankAccount(100);
+        account.withdraw(25);
+        assertEquals(75, account.getBalance(), 0.001);
+    }
+
+    @Test
+    void testInsufficientFunds() {
+        BankAccount account = new BankAccount(100);
+        assertThrows(IllegalArgumentException.class, () -> account.withdraw(150));
+    }
 }
