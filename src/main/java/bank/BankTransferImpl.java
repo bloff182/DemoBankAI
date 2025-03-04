@@ -2,15 +2,13 @@ package bank;
 
 public class BankTransferImpl implements BankTransfer{
 
-	private final int fee = 1;
-	
 	@Override
 	public void transfer(BankAccount from, BankAccount to, int amount) {
 		
-		if(from.getBalance() < amount + fee)
+		if(from.getBalance() < amount)
 			throw new IllegalArgumentException("You have no enought money!!!");
 		
-		from.withdraw(amount + fee);
+		from.withdraw(amount);
 		
 		to.deposit(amount);
 	}
