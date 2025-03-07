@@ -1,0 +1,101 @@
+package bank;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class BankAccountTests {
+
+    private BankAccount bankAccount;
+
+    @BeforeEach
+    void setUp() {
+        bankAccount = new BankAccount();
+    }
+
+    @Test
+    void testGetAmount_InitialBalance() {
+        // GIVEN - An account with an initial balance of 0 ttttt
+        int expectedAmount = 0;
+        // WHEN - We get the amount from the bank account
+        int actualAmount = bankAccount.getAmount();
+        // THEN - The actual amount should equal the expected amount
+        assertEquals(expectedAmount, actualAmount);
+    }
+
+    @Test
+    void testGetBalance_InitialBalance() {
+        // GIVEN - An account with an initial balance of 0
+        int expectedBalance = 0;
+        // WHEN - We get the balance from the bank account
+        int actualBalance = bankAccount.getBalance();
+        // THEN - The actual balance should equal the expected balance
+        assertEquals(expectedBalance, actualBalance);
+    }
+
+    @Test
+    void testSetBalance_NewAmount() {
+        // GIVEN - An account with an initial balance of 0
+        int newBalance = 100;
+        // WHEN - We set a new balance for the bank account
+        bankAccount.setBalance(newBalance);
+        // THEN - The actual balance should equal the new balance
+        assertEquals(newBalance, bankAccount.getBalance());
+    }
+
+    @Test
+    void testDeposit_PositiveAmount() {
+        // GIVEN - An account with an initial balance of 0
+        int depositAmount = 50;
+        // WHEN - We deposit a positive amount into the bank account
+        bankAccount.deposit(depositAmount);
+        // THEN - The actual balance should equal the expected balance
+        assertEquals(depositAmount, bankAccount.getBalance());
+    }
+
+    @Test
+    void testWithdraw_PositiveAmount() {
+        // GIVEN - An account with an initial balance of 100
+        bankAccount = new BankAccount(100);
+        int withdrawAmount = 25;
+        // WHEN - We withdraw a positive amount from the bank account
+        bankAccount.withdraw(withdrawAmount);
+        // THEN - The actual balance should equal the expected balance
+        assertEquals(75, bankAccount.getBalance());
+    }
+
+    @Test
+    void testWithdraw_InsufficientFunds() {
+        // GIVEN - An account with an initial balance of 100
+        bankAccount = new BankAccount(100);
+        int withdrawAmount = 200;
+        // WHEN - We attempt to withdraw a larger amount than the available balance
+        bankAccount.withdraw(withdrawAmount);
+        // THEN - An exception should be thrown indicating insufficient funds
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.withdraw(withdrawAmount));
+    }
+
+    @Test
+    void testDeposit_NegativeAmount() {
+        // GIVEN - An account with an initial balance of 100
+        bankAccount = new BankAccount(100);
+        int depositAmount = -50;
+        // WHEN - We attempt to deposit a negative amount
+        bankAccount.deposit(depositAmount);
+        // THEN - An exception should be thrown indicating an invalid deposit amount
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.deposit(depositAmount));
+    }
+
+    @Test
+    void testWithdraw_NegativeAmount() {
+        // GIVEN - An account with an initial balance of 100
+        bankAccount = new BankAccount(100);
+        int withdrawAmount = -50;
+        // WHEN - We attempt to withdraw a negative amount
+        bankAccount.withdraw(withdrawAmount);
+        // THEN - An exception should be thrown indicating an invalid withdrawal amount
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.withdraw(withdrawAmount));
+    }
+
+}
