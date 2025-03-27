@@ -48,6 +48,6 @@ public class BankAccount {
 	}
 
 	public void anotherMethod(){
-		// created tag v1.0.1
+		System.out.println("nowa wersja");
 	}
 }
