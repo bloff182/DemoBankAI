@@ -18,4 +18,8 @@ public class BankTransferImpl implements BankTransfer{
 	public BankAccount openAccount(int balance) {
 		return new BankAccount(balance);
 	}
+
+	public void anotherMethod(){
+		System.out.println("Nowa wersja na branchu2");
+	}
 }
