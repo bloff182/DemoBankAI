@@ -44,10 +44,10 @@ public class BankAccount {
 	}
 	
 	public void gitRemoveTest(){
-
+		System.out.println("nowa wersja 4");
 	}
 
 	public void anotherMethod(){
-		System.out.println("nowa wersja");
+		System.out.println("nowa wersja 4");
 	}
 }
