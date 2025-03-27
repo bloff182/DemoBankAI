@@ -43,8 +43,11 @@ public class BankAccount {
 		return "BankAccount [balance=" + balance + "]";
 	}
 	
-	public void gtRemoveTest(){
+	public void gitRemoveTest(){
 
 	}
 
+	public void anotherMethod(){
+
+	}
 }
